@@ -25,7 +25,7 @@
     <input type="hidden" name="mealId" value="${meal.id}">
     <div class="field">
         <label>Date/Time : </label>
-        <input type="datetime-local" " name="dateTime"
+        <input type="datetime-local" name="dateTime"
         value="<c:out value="${meal.dateTime}"/>" /> <br/>
     </div>
     <div class="field">

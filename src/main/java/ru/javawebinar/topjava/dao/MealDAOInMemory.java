@@ -10,7 +10,7 @@ import static ru.javawebinar.topjava.util.MealsUtil.meals;
 public class MealDAOInMemory implements MealDAO {
     @Override
     public Meal byId(Integer id) {
-        return meals.stream().filter(meal -> meal.getId()==id).findFirst().orElse(null);
+        return meals.stream().filter(meal -> meal.getId() == id).findFirst().orElse(null);
     }
 
     @Override

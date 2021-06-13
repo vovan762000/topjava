@@ -71,15 +71,11 @@ public class MealServlet extends HttpServlet {
         } else if (action.equalsIgnoreCase("insert")) {
             log.debug("Add new meal");
             forward = "/meal.jsp";
-//        } else if (action.equalsIgnoreCase("listUser")) {
-//            forward = LIST_USER;
-//            request.setAttribute("users", dao.list());
         } else {
             log.debug("forward to meals");
             request.setAttribute("mealToList", filteredByStreams(dao.list(), LocalTime.MIN, LocalTime.MAX, CALORIES_PER_DAY));
             forward = "/meals.jsp";
         }
-
         request.getRequestDispatcher(forward).forward(request, response);
     }
 }
