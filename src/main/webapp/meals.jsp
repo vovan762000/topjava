@@ -20,7 +20,6 @@
 <h2>Meals</h2>
 <p><a href="meals?action=insert">Add Meal</a></p>
 <table border="1" cellpadding="5">
-    <%--    <caption><h2>List of users</h2></caption>--%>
     <tr>
         <th>Date</th>
         <th>Description</th>
