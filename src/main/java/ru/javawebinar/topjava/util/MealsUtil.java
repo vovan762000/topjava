@@ -20,20 +20,25 @@ import java.util.stream.Collectors;
 public class MealsUtil {
     public static final int DEFAULT_CALORIES_PER_DAY = 2000;
     public static final AtomicInteger counter = new AtomicInteger(0);
+    private static final int ADMIN_ID = counter.incrementAndGet();
+    private static final int USER_ID = counter.incrementAndGet();
 
     public static final List<Meal> meals = Arrays.asList(
-            new Meal(LocalDateTime.of(2020, Month.JANUARY, 30, 10, 0), "Завтрак", 500),
-            new Meal(LocalDateTime.of(2020, Month.JANUARY, 30, 13, 0), "Обед", 1000),
-            new Meal(LocalDateTime.of(2020, Month.JANUARY, 30, 20, 0), "Ужин", 500),
-            new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 0, 0), "Еда на граничное значение", 100),
-            new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 10, 0), "Завтрак", 1000),
-            new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 13, 0), "Обед", 500),
-            new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 20, 0), "Ужин", 410)
+            new Meal(LocalDateTime.of(2020, Month.JANUARY, 30, 10, 0), "Завтрак", 500,ADMIN_ID),
+            new Meal(LocalDateTime.of(2020, Month.JANUARY, 30, 13, 0), "Обед", 1000,ADMIN_ID),
+            new Meal(LocalDateTime.of(2020, Month.JANUARY, 30, 20, 0), "Ужин", 500,ADMIN_ID),
+            new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 0, 0), "Еда на граничное значение", 100,ADMIN_ID),
+            new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 10, 0), "Завтрак", 1000,ADMIN_ID),
+            new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 13, 0), "Обед", 500,ADMIN_ID),
+            new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 20, 0), "Ужин", 410,ADMIN_ID),
+            new Meal(LocalDateTime.of(2021, Month.JANUARY, 31, 20, 0), "Ужин", 410,USER_ID),
+            new Meal(LocalDateTime.of(2021, Month.JANUARY, 31, 20, 0), "Ужин", 410,USER_ID),
+            new Meal(LocalDateTime.of(2021, Month.JANUARY, 31, 20, 0), "Ужин", 410,USER_ID)
     );
 
     public static final List<User> users = Arrays.asList(
-            new User(counter.incrementAndGet(), "Vasia", "vovan7620@gmail.com", "artem30", Role.ADMIN),
-            new User(counter.incrementAndGet(), "Petia", "vovan7621@gmail.com", "artem31", Role.USER)
+            new User(ADMIN_ID, "Vasia", "vovan7620@gmail.com", "artem30", Role.ADMIN),
+            new User(USER_ID, "Petia", "vovan7621@gmail.com", "artem31", Role.USER)
     );
 
     public static List<MealTo> getTos(Collection<Meal> meals, int caloriesPerDay) {
