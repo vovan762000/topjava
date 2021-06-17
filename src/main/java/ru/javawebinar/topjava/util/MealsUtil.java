@@ -20,8 +20,8 @@ import java.util.stream.Collectors;
 public class MealsUtil {
     public static final int DEFAULT_CALORIES_PER_DAY = 2000;
     public static final AtomicInteger counter = new AtomicInteger(0);
-    private static final int ADMIN_ID = counter.incrementAndGet();
-    private static final int USER_ID = counter.incrementAndGet();
+    public static final int ADMIN_ID = counter.incrementAndGet();
+    public static final int USER_ID = counter.incrementAndGet();
 
     public static final List<Meal> meals = Arrays.asList(
             new Meal(LocalDateTime.of(2020, Month.JANUARY, 30, 10, 0), "Завтрак", 500,ADMIN_ID),

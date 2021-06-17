@@ -6,6 +6,12 @@ import ru.javawebinar.topjava.util.exception.NotFoundException;
 
 public class ValidationUtil {
 
+    public static void checkAuthorizedUser(int userId,int authUserId){
+        if (userId!=authUserId){
+            throw new NotFoundException("Meal don't belong user");
+        }
+    }
+
     public static <T> T checkNotFoundWithId(T object, int id) {
         checkNotFoundWithId(object != null, id);
         return object;
