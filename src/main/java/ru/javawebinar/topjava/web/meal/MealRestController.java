@@ -1,18 +1,13 @@
 package ru.javawebinar.topjava.web.meal;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
 import org.springframework.stereotype.Controller;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.model.MealTo;
-import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.service.MealService;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.slf4j.Logger;
 import ru.javawebinar.topjava.util.MealsUtil;
+
+import java.util.List;
 
 import static org.slf4j.LoggerFactory.getLogger;
 import static ru.javawebinar.topjava.util.ValidationUtil.assureIdConsistent;
@@ -31,12 +26,12 @@ public class MealRestController {
 
     public List<MealTo> getAll() {
         log.info("getAll");
-        return MealsUtil.getTos(service.getAll(authUserId()),MealsUtil.DEFAULT_CALORIES_PER_DAY);
+        return MealsUtil.getTos(service.getAll(authUserId()), MealsUtil.DEFAULT_CALORIES_PER_DAY);
     }
 
     public Meal get(int id) {
         log.info("get {}", id);
-        return service.get(id,authUserId());
+        return service.get(id, authUserId());
     }
 
     public Meal create(Meal meal) {
@@ -47,7 +42,7 @@ public class MealRestController {
 
     public void delete(int id) {
         log.info("delete {}", id);
-        service.delete(id,authUserId());
+        service.delete(id, authUserId());
     }
 
     public void update(Meal meal, int id) {

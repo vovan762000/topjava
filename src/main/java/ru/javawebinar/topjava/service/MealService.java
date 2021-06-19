@@ -27,7 +27,10 @@ public class MealService {
     }
 
     public Meal get(int id, int userId) {
-        return checkNotFoundWithId(repository.get(id, userId), id);
+        Meal meal = repository.get(id, userId);
+        checkNotFoundWithId(meal, id);
+        checkAuthorizedUser(meal.getUserId(),userId);
+        return meal;
     }
 
     public Collection<Meal> getAll(int userId) {
