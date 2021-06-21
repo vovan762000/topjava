@@ -6,7 +6,9 @@ import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.model.MealTo;
 import ru.javawebinar.topjava.service.MealService;
 import ru.javawebinar.topjava.util.MealsUtil;
+import ru.javawebinar.topjava.web.SecurityUtil;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.slf4j.LoggerFactory.getLogger;
@@ -27,6 +29,11 @@ public class MealRestController {
     public List<MealTo> getAll() {
         log.info("getAll");
         return MealsUtil.getTos(service.getAll(authUserId()), MealsUtil.DEFAULT_CALORIES_PER_DAY);
+    }
+
+    public List<MealTo> getBetween(LocalDateTime start,LocalDateTime end){
+        log.info("get between");
+        return MealsUtil.getTos(service.getBetween(start,end, SecurityUtil.authUserId()),MealsUtil.DEFAULT_CALORIES_PER_DAY);
     }
 
     public Meal get(int id) {

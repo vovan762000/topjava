@@ -14,5 +14,9 @@ public class DateTimeUtil {
     public static String toString(LocalDateTime ldt) {
         return ldt == null ? "" : ldt.format(DATE_TIME_FORMATTER);
     }
+
+    public static boolean isBetween(LocalDateTime ltd, LocalDateTime start, LocalDateTime end) {
+        return ltd.compareTo(start) >= 0 && ltd.compareTo(end) < 0;
+    }
 }
 
