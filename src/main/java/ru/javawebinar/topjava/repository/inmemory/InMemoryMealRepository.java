@@ -5,6 +5,7 @@ import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.repository.MealRepository;
 import ru.javawebinar.topjava.util.MealsUtil;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Map;
@@ -46,6 +47,11 @@ public class InMemoryMealRepository implements MealRepository {
                 .filter(meal -> meal.getUserId()==userId)
                 .sorted(Comparator.comparing(Meal::getDate).reversed())
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Collection<Meal> getBetween(LocalDateTime start, LocalDateTime end, int userId) {
+        return null;
     }
 }
 
