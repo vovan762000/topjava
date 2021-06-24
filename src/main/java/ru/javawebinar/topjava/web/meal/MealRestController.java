@@ -8,7 +8,8 @@ import ru.javawebinar.topjava.service.MealService;
 import ru.javawebinar.topjava.util.MealsUtil;
 import ru.javawebinar.topjava.web.SecurityUtil;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import static org.slf4j.LoggerFactory.getLogger;
@@ -31,9 +32,9 @@ public class MealRestController {
         return MealsUtil.getTos(service.getAll(authUserId()), MealsUtil.DEFAULT_CALORIES_PER_DAY);
     }
 
-    public List<MealTo> getBetween(LocalDateTime start,LocalDateTime end){
-        log.info("get between");
-        return MealsUtil.getTos(service.getBetween(start,end, SecurityUtil.authUserId()),MealsUtil.DEFAULT_CALORIES_PER_DAY);
+    public List<MealTo> getBetween(LocalDate startDate, LocalDate endDate, LocalTime startTime, LocalTime endTime) {
+        log.info("get between with date {} to date {} with time {} to time {}",startDate,endDate,startTime,endTime);
+        return MealsUtil.getTos(service.getBetween(startDate, endDate, startTime, endTime, SecurityUtil.authUserId()), MealsUtil.DEFAULT_CALORIES_PER_DAY);
     }
 
     public Meal get(int id) {

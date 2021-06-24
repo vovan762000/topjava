@@ -9,7 +9,9 @@ import ru.javawebinar.topjava.util.MealsUtil;
 import ru.javawebinar.topjava.web.meal.MealRestController;
 import ru.javawebinar.topjava.web.user.AdminRestController;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.Month;
 import java.util.Arrays;
 
@@ -23,7 +25,10 @@ public class SpringMain {
             MealRestController mealRestController = appCtx.getBean(MealRestController.class);
             mealRestController.create(new Meal(LocalDateTime.now(),"Dinner",500, MealsUtil.USER_ID));
             //mealRestController.getAll().forEach(System.out::println);
-            mealRestController.getBetween(LocalDateTime.of(2020, Month.JANUARY, 30, 10, 0),LocalDateTime.of(2020, Month.JANUARY, 30, 20, 1))
+            mealRestController.getBetween(LocalDate.of(2020, Month.JANUARY, 30),
+                    LocalDate.of(2020, Month.JANUARY, 30),
+                    LocalTime.of(10, 0),
+                    LocalTime.of(20, 0))
             .forEach(System.out::println);
         }
     }

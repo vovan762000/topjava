@@ -31,9 +31,9 @@ public class MealsUtil {
             new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 10, 0), "Завтрак", 1000,ADMIN_ID),
             new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 13, 0), "Обед", 500,ADMIN_ID),
             new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 20, 0), "Ужин", 410,ADMIN_ID),
-            new Meal(LocalDateTime.of(2021, Month.JANUARY, 31, 20, 0), "Ужин", 410,USER_ID),
-            new Meal(LocalDateTime.of(2021, Month.JANUARY, 31, 20, 0), "Ужин", 410,USER_ID),
-            new Meal(LocalDateTime.of(2021, Month.JANUARY, 31, 20, 0), "Ужин", 410,USER_ID)
+            new Meal(LocalDateTime.of(2021, Month.JANUARY, 31, 10, 0), "Юзер Завтрак", 410,USER_ID),
+            new Meal(LocalDateTime.of(2021, Month.JANUARY, 31, 13, 0), "Юзер Обед", 410,USER_ID),
+            new Meal(LocalDateTime.of(2021, Month.JANUARY, 31, 20, 0), "Юзер Ужин", 410,USER_ID)
     );
 
     public static final List<User> users = Arrays.asList(
