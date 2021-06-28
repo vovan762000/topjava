@@ -2,6 +2,7 @@ package ru.javawebinar.topjava.repository.inmemory;
 
 import org.springframework.stereotype.Repository;
 import ru.javawebinar.topjava.model.Meal;
+import ru.javawebinar.topjava.model.MealTo;
 import ru.javawebinar.topjava.repository.MealRepository;
 import ru.javawebinar.topjava.util.DateTimeUtil;
 import ru.javawebinar.topjava.util.MealsUtil;
@@ -53,10 +54,9 @@ public class InMemoryMealRepository implements MealRepository {
     }
 
     @Override
-    public Collection<Meal> getBetween(LocalDate startDate, LocalDate endDate, LocalTime startTime, LocalTime endTime, int userId) {
-        return getAll(userId).stream()
+    public Collection<MealTo> getBetween(LocalDate startDate, LocalDate endDate, LocalTime startTime, LocalTime endTime, int userId) {
+        return MealsUtil.getTos(getAll(userId),MealsUtil.DEFAULT_CALORIES_PER_DAY).stream()
                 .filter(meal -> DateTimeUtil.isBetween(meal.getDateTime(),startDate,endDate,startTime,endTime))
-                .sorted(Comparator.comparing(Meal::getDate).reversed())
                 .collect(Collectors.toList());
     }
 

@@ -17,6 +17,18 @@ public class DateTimeUtil {
     }
 
     public static boolean isBetween(LocalDateTime ltd, LocalDate startDate, LocalDate endDate, LocalTime startTime, LocalTime endTime) {
+        if (startDate == null) {
+            startDate = LocalDate.MIN;
+        }
+        if (endDate == null) {
+            endDate = LocalDate.MAX;
+        }
+        if (startTime == null) {
+            startTime = LocalTime.MIN;
+        }
+        if (endTime == null) {
+            endTime = LocalTime.MAX;
+        }
         return (ltd.toLocalDate().compareTo(startDate) >= 0 && ltd.toLocalDate().compareTo(endDate) <= 0) &&
                 (ltd.toLocalTime().compareTo(startTime) >= 0 && ltd.toLocalTime().compareTo(endTime) < 0);
     }

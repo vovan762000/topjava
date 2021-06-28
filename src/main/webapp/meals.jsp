@@ -27,23 +27,23 @@
         <input type="hidden" name="action" value="filter">
     <dl>
         <dt>From Date:</dt>
-        <dd><input type="date" name="startDate" value="startDate" required></dd>
+        <dd><input type="date" name="startDate" value="startDate"></dd>
     </dl>
     <dl>
         <dt>To Date:</dt>
-        <dd><input type="date" name="endDate" required></dd>
+        <dd><input type="date" name="endDate"></dd>
     </dl>
     <dl>
         <dt>From Time:</dt>
-        <dd><input type="time" size=40 name="startTime" required></dd>
+        <dd><input type="time" size=40 name="startTime"></dd>
     </dl>
     <dl>
         <dt>To Time:</dt>
-        <dd><input type="time" size=40 name="endTime" required></dd>
+        <dd><input type="time" size=40 name="endTime"></dd>
     </dl>
     <br>
 <%--    <a href="meals?action=filter">Filter</a>--%>
-        <button type="submit">Save</button>
+        <button type="submit">Filter</button>
     </form>
     <br><br>
     <table border="1" cellpadding="8" cellspacing="0">

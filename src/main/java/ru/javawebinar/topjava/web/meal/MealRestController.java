@@ -10,7 +10,9 @@ import ru.javawebinar.topjava.web.SecurityUtil;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.slf4j.LoggerFactory.getLogger;
 import static ru.javawebinar.topjava.util.ValidationUtil.assureIdConsistent;
@@ -34,7 +36,7 @@ public class MealRestController {
 
     public List<MealTo> getBetween(LocalDate startDate, LocalDate endDate, LocalTime startTime, LocalTime endTime) {
         log.info("get between with date {} to date {} with time {} to time {}",startDate,endDate,startTime,endTime);
-        return MealsUtil.getTos(service.getBetween(startDate, endDate, startTime, endTime, SecurityUtil.authUserId()), MealsUtil.DEFAULT_CALORIES_PER_DAY);
+        return new ArrayList<>(service.getBetween(startDate, endDate, startTime, endTime, SecurityUtil.authUserId()));
     }
 
     public Meal get(int id) {

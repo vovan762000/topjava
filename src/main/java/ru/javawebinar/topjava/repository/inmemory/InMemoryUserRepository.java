@@ -7,7 +7,6 @@ import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.repository.UserRepository;
 import ru.javawebinar.topjava.util.MealsUtil;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +19,7 @@ public class InMemoryUserRepository implements UserRepository {
     private final Map<Integer, User> repository = new ConcurrentHashMap<>();
 
     {
-        MealsUtil.users.forEach(this::save);
+        MealsUtil.users.forEach(user -> repository.put(user.getId(), user));
     }
 
     @Override
@@ -38,7 +37,7 @@ public class InMemoryUserRepository implements UserRepository {
             return user;
         }
         // handle case: update, but not present in storage
-        return repository.computeIfPresent(user.getId(), (id, oldMeal) -> user);
+        return repository.computeIfPresent(user.getId(), (id, oldUser) -> user);
     }
 
     @Override

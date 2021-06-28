@@ -2,6 +2,7 @@ package ru.javawebinar.topjava.service;
 
 import org.springframework.stereotype.Service;
 import ru.javawebinar.topjava.model.Meal;
+import ru.javawebinar.topjava.model.MealTo;
 import ru.javawebinar.topjava.repository.MealRepository;
 
 import java.time.LocalDate;
@@ -44,7 +45,7 @@ public class MealService {
         checkNotFoundWithId(repository.save(meal), meal.getId());
     }
 
-    public Collection<Meal> getBetween(LocalDate startDate, LocalDate endDate, LocalTime startTime, LocalTime endTime, int userId) {
+    public Collection<MealTo> getBetween(LocalDate startDate, LocalDate endDate, LocalTime startTime, LocalTime endTime, int userId) {
         return repository.getBetween(startDate, endDate, startTime, endTime, userId);
     }
 }
