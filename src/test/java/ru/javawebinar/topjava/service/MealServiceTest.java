@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
@@ -12,11 +13,13 @@ import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.util.exception.NotFoundException;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
 
 import static org.junit.Assert.assertThrows;
 import static ru.javawebinar.topjava.MealTestData.*;
+import static ru.javawebinar.topjava.UserTestData.ADMIN_ID;
 import static ru.javawebinar.topjava.UserTestData.USER_ID;
 
 @ContextConfiguration({
@@ -42,9 +45,25 @@ public class MealServiceTest {
     }
 
     @Test
+    public void getNotOwn(){
+        assertThrows(NotFoundException.class, () -> service.get(USER_MEAL1, ADMIN_ID));
+    }
+
+    @Test
+    public void duplicateDateTimeCreate(){
+      assertThrows(DataAccessException.class,
+              ()->service.create(new Meal(null, LocalDateTime.of(2020, Month.JANUARY, 30, 10, 0), "Dublicate", 300),USER_ID));
+    }
+
+    @Test
     public void delete() {
         service.delete(USER_MEAL1, USER_ID);
         assertThrows(NotFoundException.class, () -> service.get(USER_MEAL1, USER_ID));
+    }
+
+    @Test
+    public void deleteNotOwn(){
+        assertThrows(NotFoundException.class, () -> service.delete(USER_MEAL1, ADMIN_ID));
     }
 
     @Test
@@ -65,6 +84,11 @@ public class MealServiceTest {
         Meal updatedMeal = getUpdated();
         service.update(updatedMeal, USER_ID);
         assertMatch(service.get(USER_MEAL1, USER_ID), getUpdated());
+    }
+
+    @Test
+    public void updateNotOwn(){
+        assertThrows(NotFoundException.class, () -> service.update(getUpdated(), ADMIN_ID));
     }
 
     @Test
