@@ -9,30 +9,30 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @NamedQueries({
-        @NamedQuery(name = "Meal.GET",query = "SELECT m FROM Meal m LEFT JOIN FETCH m.user WHERE m.id=:id AND m.user.id=:userId "),
-        @NamedQuery(name = "Meal.DELETE",query = "DELETE FROM Meal m WHERE m.id=:id AND m.user.id=:userId"),
-        @NamedQuery(name = "Meal.GET_ALL",query = "SELECT m FROM Meal m LEFT JOIN FETCH m.user WHERE m.user.id=:userId"),
-        @NamedQuery(name = "Meal.UPDATE",query = "UPDATE Meal m SET m.dateTime=:dateTime," +
-                "m.description=:description,m.calories=:calories,m.user.id=:userId"),
-//        @NamedQuery(name = "Meal.GET_BETWEEN",query = "SELECT m FROM Meal m WHERE m.dateTime BETWEEN :startDateTime AND :endDateTime")
+        @NamedQuery(name = "Meal.GET", query = "SELECT m FROM Meal m LEFT JOIN FETCH m.user WHERE m.id=:id AND m.user.id=:userId "),
+        @NamedQuery(name = "Meal.DELETE", query = "DELETE FROM Meal m WHERE m.id=:id AND m.user.id=:userId"),
+        @NamedQuery(name = "Meal.GET_ALL", query = "SELECT m FROM Meal m LEFT JOIN FETCH m.user WHERE m.user.id=:userId"),
+        @NamedQuery(name = "Meal.GET_BETWEEN", query = "SELECT m FROM Meal m LEFT JOIN FETCH m.user" +
+                " WHERE m.user.id =: userId AND m.dateTime >=:startDateTime AND m.dateTime<:endDateTime")
 })
 @Entity
-@Table(name = "meals",uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id","date_time"}, name = "meals_unique_user_datetime_idx")})
+@Table(name = "meals", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "date_time"}, name = "meals_unique_user_datetime_idx")})
 public class Meal extends AbstractBaseEntity {
     public static final String GET = "Meal.GET";
     public static final String DELETE = "Meal.DELETE";
     public static final String GET_ALL = "Meal.GET_ALL";
+    public static final String GET_BETWEEN = "Meal.GET_BETWEEN";
 
-    @Column(name = "date_time",nullable = false)
+    @Column(name = "date_time", nullable = false)
     @NotNull
     private LocalDateTime dateTime;
 
-    @Column(name = "description",nullable = false)
+    @Column(name = "description", nullable = false)
     @NotBlank
     @Size(max = 50)
     private String description;
 
-    @Column(name = "calories",nullable = false)
+    @Column(name = "calories", nullable = false)
     @NotNull
     private int calories;
 
