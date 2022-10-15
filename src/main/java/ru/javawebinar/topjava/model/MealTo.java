@@ -2,7 +2,7 @@ package ru.javawebinar.topjava.model;
 
 import java.time.LocalDateTime;
 
-public class MealTo {
+public class MealTo extends BaseEntity{
     private LocalDateTime dateTime;
 
     private String description;
@@ -14,7 +14,8 @@ public class MealTo {
     public MealTo() {
     }
 
-    public MealTo(LocalDateTime dateTime, String description, int calories, boolean excess) {
+    public MealTo(Integer id,LocalDateTime dateTime, String description, int calories, boolean excess) {
+        super(id);
         this.dateTime = dateTime;
         this.description = description;
         this.calories = calories;
@@ -40,6 +41,7 @@ public class MealTo {
     @Override
     public String toString() {
         return "MealTo{" +
+                "id=" + id +
                 "dateTime=" + dateTime +
                 ", description='" + description + '\'' +
                 ", calories=" + calories +

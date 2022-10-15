@@ -19,7 +19,8 @@
 <body>
 <h3><a href="index.html">Home</a></h3>
 <hr>
-<h3>Meals</h3>
+<h2>Meals</h2>
+<p><a href="meals?action=addOrUpdate">Add Meal</a></p>
 <table>
     <tr>
 
@@ -38,6 +39,8 @@
             </td>
             <td>${mealTo.description}</td>
             <td>${mealTo.calories}</td>
+            <td><a href="meals?action=addOrUpdate&id=<c:out value="${mealTo.id}"/>">Update</a></td>
+            <td><a href="meals?action=delete&id=<c:out value="${mealTo.id}"/>">Delete</a></td>
         </tr>
     </c:forEach>
 </table>
