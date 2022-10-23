@@ -2,6 +2,8 @@ package ru.javawebinar.topjava.repository;
 
 import ru.javawebinar.topjava.model.Meal;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Collection;
 
 // TODO add userId
@@ -17,4 +19,5 @@ public interface MealRepository {
 
     // ORDERED dateTime desc
     Collection<Meal> getAll(int userId);
+
 }

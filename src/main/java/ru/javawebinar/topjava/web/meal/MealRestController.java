@@ -5,8 +5,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.service.MealService;
+import ru.javawebinar.topjava.to.MealTo;
+import ru.javawebinar.topjava.util.MealsUtil;
+import ru.javawebinar.topjava.util.ValidationUtil;
 import ru.javawebinar.topjava.web.SecurityUtil;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Controller
@@ -20,26 +25,35 @@ public class MealRestController {
 
     public Meal get(int id) {
         log.info("get with id {}", id);
-        return service.get(id, SecurityUtil.authUserId());
+        return service.get(id);
     }
 
     public void delete(int id) {
         log.info("delete with id {}", id);
-        service.delete(id, SecurityUtil.authUserId());
+        service.delete(id);
     }
 
-    public List<Meal> getAll() {
+    public List<MealTo> getAll() {
         log.info("get all");
-        return service.getAll(SecurityUtil.authUserId());
+        return service.getAll();
     }
 
     public Meal create(Meal meal) {
         log.info("create {}", meal);
-        return service.create(meal, SecurityUtil.authUserId());
+        return service.create(meal);
     }
 
-    public void update(Meal meal) {
+    public void update(Meal meal, int id) {
         log.info("update {}", meal);
-        service.update(meal, SecurityUtil.authUserId());
+        ValidationUtil.assureIdConsistent(meal, id);
+        service.update(meal);
+    }
+
+    public List<MealTo> grtFiltered(LocalDate startDate,
+                                    LocalDate endDate,
+                                    LocalTime startTime,
+                                    LocalTime endTime) {
+        log.info("get meal from date {} to date {} from time {} to time {} ", startDate, endDate, startTime, endTime);
+        return service.getFiltered(startDate,endDate,startTime,endTime);
     }
 }
