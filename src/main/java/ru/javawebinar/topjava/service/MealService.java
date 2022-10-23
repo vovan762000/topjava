@@ -32,7 +32,7 @@ public class MealService {
     }
 
     public List<MealTo> getAll(){
-        return MealsUtil.getTos(repository.getAll(SecurityUtil.authUserId()), MealsUtil.DEFAULT_CALORIES_PER_DAY);
+        return MealsUtil.getTos(repository.getAll(SecurityUtil.authUserId()), SecurityUtil.authUserCaloriesPerDay());
     }
 
     public Meal create(Meal meal){
