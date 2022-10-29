@@ -5,7 +5,6 @@ import org.junit.runner.RunWith;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
@@ -83,23 +82,23 @@ public class MealServiceTest {
     }
 
     @Test
-    public void duplicateDateTimeCreate(){
-        assertThrows(DataAccessException.class,()->service.create(getDuplicateDateTime(),USER_ID));
+    public void duplicateDateTimeCreate() {
+        assertThrows(DataAccessException.class, () -> service.create(getDuplicateDateTime(), USER_ID));
     }
 
     @Test
-    public void getNotOwn(){
-        assertThrows(NotFoundException.class,()->service.get(USER_MEAL_1_ID,ADMIN_ID));
+    public void getNotOwn() {
+        assertThrows(NotFoundException.class, () -> service.get(USER_MEAL_1_ID, ADMIN_ID));
     }
 
     @Test
-    public void deleteNotOwn(){
-        assertThrows(NotFoundException.class,()->service.delete(USER_MEAL_1_ID,ADMIN_ID));
+    public void deleteNotOwn() {
+        assertThrows(NotFoundException.class, () -> service.delete(USER_MEAL_1_ID, ADMIN_ID));
     }
 
     @Test
-    public void updateNotOwn(){
+    public void updateNotOwn() {
         Meal updated = getUpdated();
-        assertThrows(NotFoundException.class,()->service.update(updated, ADMIN_ID));
+        assertThrows(NotFoundException.class, () -> service.update(updated, ADMIN_ID));
     }
 }
