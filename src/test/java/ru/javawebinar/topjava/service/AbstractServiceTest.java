@@ -15,8 +15,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import ru.javawebinar.topjava.ActiveDbProfileResolver;
 import ru.javawebinar.topjava.TimingRules;
 
-import java.util.Arrays;
-
 import static org.junit.Assert.assertThrows;
 import static ru.javawebinar.topjava.util.ValidationUtil.getRootCause;
 
@@ -49,9 +47,9 @@ public abstract class AbstractServiceTest {
         });
     }
 
-    protected boolean isJdbc(){
-        for (String ap:env.getActiveProfiles()){
-            if (ap.equals("jdbc")){
+    protected boolean isJdbc() {
+        for (String ap : env.getActiveProfiles()) {
+            if (ap.equals("jdbc")) {
                 return true;
             }
         }
